@@ -1,7 +1,7 @@
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/usecases/tv/get_top_rated_tv.dart';
 import 'package:flutter/foundation.dart';
+import 'package:core/core.dart';
 
 class TopRatedTVNotifier extends ChangeNotifier {
   final GetTopRatedTV getTopRatedTV;
