@@ -6,4 +6,5 @@ export 'utils/constants.dart';
 export 'utils/exception.dart';
 export 'utils/failure.dart';
 export 'utils/state_enum.dart';
+export 'db/database_helper.dart';
 export 'utils/utils.dart';
