@@ -15,3 +15,7 @@ class OnQueryChanged extends SearchEvent {
   @override
   List<Object> get props => [query];
 }
+
+EventTransformer<SearchEvent> debounce<SearchEvent>(Duration duration) {
+  return (events, mapper) => events.debounceTime(duration).flatMap(mapper);
+}

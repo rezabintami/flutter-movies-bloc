@@ -1,4 +1,3 @@
-import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:equatable/equatable.dart';
 
@@ -16,14 +15,6 @@ class WatchListTable extends Equatable {
     required this.posterPath,
     required this.overview,
   });
-
-  factory WatchListTable.fromEntity(MovieDetail movie) => WatchListTable(
-        id: movie.id,
-        isMovie: 1,
-        title: movie.title,
-        posterPath: movie.posterPath,
-        overview: movie.overview,
-      );
 
   factory WatchListTable.fromMap(Map<String, dynamic> map) => WatchListTable(
         id: map['id'],

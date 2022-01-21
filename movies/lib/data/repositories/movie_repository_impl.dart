@@ -7,7 +7,7 @@ import 'package:movies/data/datasources/movie_remote_data_source.dart';
 import 'package:movies/data/models/movie_table.dart';
 import 'package:movies/domain/entities/movie.dart';
 import 'package:movies/domain/entities/movie_detail.dart';
-import 'package:movies/domain/entities/watchlist.dart';
+import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:movies/domain/repositories/movie_repository.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
@@ -89,41 +89,5 @@ class MovieRepositoryImpl implements MovieRepository {
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
     }
-  }
-
-  @override
-  Future<Either<Failure, String>> saveWatchlist(MovieDetail movie) async {
-    try {
-      final result =
-          await localDataSource.insertWatchlist(MovieTable.fromEntity(movie));
-      return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  @override
-  Future<Either<Failure, String>> removeWatchlist(MovieDetail movie) async {
-    try {
-      final result =
-          await localDataSource.removeWatchlist(MovieTable.fromEntity(movie));
-      return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    }
-  }
-
-  @override
-  Future<bool> isAddedToWatchlist(int id) async {
-    final result = await localDataSource.getMovieById(id);
-    return result != null;
-  }
-
-  @override
-  Future<Either<Failure, List<Watchlist>>> getWatchlistMovies() async {
-    final result = await localDataSource.getWatchlist();
-    return Right(result.map((data) => data.toEntity()).toList());
   }
 }
