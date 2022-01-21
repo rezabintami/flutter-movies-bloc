@@ -9,8 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  tv:
+    path: ../tv
+  movies:
+    path: ../movies
   google_fonts: ^2.1.0
   equatable: ^2.0.2
+  sqflite: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:
