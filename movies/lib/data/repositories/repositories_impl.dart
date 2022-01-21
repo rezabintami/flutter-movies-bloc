@@ -1,1 +1,1 @@
-export 'package:movies/data/repositories/repositories_impl.dart';
+export 'package:movies/data/repositories/movie_repository_impl.dart';

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tv/tv.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -16,11 +17,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final result = await _searchTV.execute(query);
 
       result.fold(
-        (failure) {},
+        (failure) {
+          emit(SearchError(failure.message));
+        },
         (data) {
           emit(SearchHasData(data));
         },
       );
-    });
+    }, transformer: debounce(const Duration(milliseconds: 500)));
   }
 }

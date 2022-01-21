@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:movies/domain/entities/movie.dart';
 import 'package:movies/domain/entities/movie_detail.dart';
-import 'package:movies/domain/entities/watchlist.dart';
 
 abstract class MovieRepository {
   Future<Either<Failure, List<Movie>>> getNowPlayingMovies();
@@ -11,8 +10,4 @@ abstract class MovieRepository {
   Future<Either<Failure, MovieDetail>> getMovieDetail(int id);
   Future<Either<Failure, List<Movie>>> getMovieRecommendations(int id);
   Future<Either<Failure, List<Movie>>> searchMovies(String query);
-  Future<Either<Failure, String>> saveWatchlist(MovieDetail movie);
-  Future<Either<Failure, String>> removeWatchlist(MovieDetail movie);
-  Future<bool> isAddedToWatchlist(int id);
-  Future<Either<Failure, List<Watchlist>>> getWatchlistMovies();
 }

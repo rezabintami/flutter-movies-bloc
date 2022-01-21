@@ -3,8 +3,4 @@ export 'package:movies/domain/usecases/get_movie_recommendations.dart';
 export 'package:movies/domain/usecases/get_now_playing_movies.dart';
 export 'package:movies/domain/usecases/get_popular_movies.dart';
 export 'package:movies/domain/usecases/get_top_rated_movies.dart';
-export 'package:movies/domain/usecases/get_watchlist_movies.dart';
-export 'package:movies/domain/usecases/get_watchlist_status.dart';
-export 'package:movies/domain/usecases/remove_watchlist.dart';
-export 'package:movies/domain/usecases/save_watchlist.dart';
 export 'package:movies/domain/usecases/search_movies.dart';

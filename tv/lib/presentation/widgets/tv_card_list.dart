@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:flutter/material.dart';
+import 'package:tv/domain/entities/entities.dart';
 
-class WatchlistCard extends StatelessWidget {
-  final Watchlist watchlist;
+class TVCard extends StatelessWidget {
+  final TV tv;
 
-  WatchlistCard(this.watchlist);
+  TVCard(this.tv);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,11 @@ class WatchlistCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
-          watchlist.isMovie == 1
-              ? Navigator.pushNamed(
-                  context,
-                  DETAIL_MOVIE_PAGE,
-                  arguments: watchlist.id,
-                )
-              : Navigator.pushNamed(
-                  context,
-                  DETAIL_TV_PAGE,
-                  arguments: watchlist.id,
-                );
+          Navigator.pushNamed(
+            context,
+            DETAIL_TV_PAGE,
+            arguments: tv.id,
+          );
         },
         child: Stack(
           alignment: Alignment.bottomLeft,
@@ -40,14 +34,14 @@ class WatchlistCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      watchlist.title ?? '-',
+                      tv.name ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     SizedBox(height: 16),
                     Text(
-                      watchlist.overview ?? '-',
+                      tv.overview ?? '-',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -62,7 +56,7 @@ class WatchlistCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${watchlist.posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${tv.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
