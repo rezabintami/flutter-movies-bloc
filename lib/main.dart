@@ -15,6 +15,7 @@ import 'package:movies/movies.dart' as movies;
 import 'package:tv/tv.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await HttpSSLPinning.init();
   di.init();
