@@ -5,11 +5,6 @@ import 'package:ditonton/domain/usecases/get_watchlist.dart';
 import 'package:ditonton/domain/usecases/remove_movie_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_movie_watchlist.dart';
 import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
-import 'package:ditonton/presentation/provider/popular_tv_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_tv_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:movies/movies.dart' as movies;
@@ -24,44 +19,17 @@ import 'domain/usecases/save_tv_watchlist.dart';
 final locator = GetIt.instance;
 
 void init() {
-  // provider
-  locator.registerFactory(
-    () => WatchlistMovieNotifier(
-      getWatchlistMovies: locator(),
-    ),
-  );
-
-  locator.registerFactory(
-    () => PopularTVNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTVNotifier(
-      getTopRatedTV: locator(),
-    ),
-  );
-
-  locator.registerFactory(
-    () => TVListNotifier(
-      getNowPlayingTV: locator(),
-      getPopularTV: locator(),
-      getTopRatedTV: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TVDetailNotifier(
-      getTVDetail: locator(),
-      getTVRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
-    ),
-  );
-
   // tv blocs
   locator.registerFactory(() => tv.SearchBloc(locator()));
-
+  locator.registerFactory(() => tv.NowPlayingBloc(locator()));
+  locator.registerFactory(() => tv.TopRatedBloc(locator()));
+  locator.registerFactory(() => tv.PopularBloc(locator()));
+  locator.registerFactory(() => tv.DetailBloc(
+      getTVDetail: locator(),
+      getTVRecommendations: locator(),
+      getTVWatchListStatus: locator(),
+      saveTVWatchList: locator(),
+      removeTVWatchList: locator()));
   // movie blocs
   locator.registerFactory(() => movies.SearchBloc(locator()));
   locator.registerFactory(() => movies.DetailBloc(

@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/widgets/watchlist_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,8 +27,8 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    BlocProvider.of<WatchlistBloc>(context, listen: false)
+        .add(WatchlistFetch());
   }
 
   @override
