@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:movies/domain/entities/movie.dart';
 import 'package:movies/domain/usecases/search_movies.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -22,6 +23,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           emit(SearchHasData(data));
         },
       );
-    });
+    }, transformer: debounce(const Duration(milliseconds: 500)));
   }
 }

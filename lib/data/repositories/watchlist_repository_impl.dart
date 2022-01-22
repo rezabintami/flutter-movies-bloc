@@ -1,13 +1,12 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/data/datasources/watchlist_data_source.dart';
+import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:ditonton/domain/repositories/watchlist_repositories.dart';
 import 'package:movies/data/datasources/movie_local_data_source.dart';
-import 'package:movies/data/models/movie_table.dart';
 import 'package:movies/domain/entities/movie_detail.dart';
 import 'package:tv/data/datasources/tv_local_data_source.dart';
-import 'package:tv/data/models/tv_table.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 
 class WatchlistRepositoryImpl implements WatchlistRepository {
@@ -44,7 +43,7 @@ class WatchlistRepositoryImpl implements WatchlistRepository {
       MovieDetail movie) async {
     try {
       final result = await localMovieDataSource
-          .removeWatchlist(MovieTable.fromEntity(movie));
+          .removeWatchlist(WatchListTable.fromMovieEntity(movie));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -54,8 +53,8 @@ class WatchlistRepositoryImpl implements WatchlistRepository {
   @override
   Future<Either<Failure, String>> removeTVWatchlist(TVDetail tv) async {
     try {
-      final result =
-          await localTVDataSource.removeWatchlist(TVTable.fromEntity(tv));
+      final result = await localTVDataSource
+          .removeWatchlist(WatchListTable.fromTVEntity(tv));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -66,7 +65,7 @@ class WatchlistRepositoryImpl implements WatchlistRepository {
   Future<Either<Failure, String>> saveMovieWatchlist(MovieDetail movie) async {
     try {
       final result = await localMovieDataSource
-          .insertWatchlist(MovieTable.fromEntity(movie));
+          .insertWatchlist(WatchListTable.fromMovieEntity(movie));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -78,8 +77,8 @@ class WatchlistRepositoryImpl implements WatchlistRepository {
   @override
   Future<Either<Failure, String>> saveTVWatchlist(TVDetail tv) async {
     try {
-      final result =
-          await localTVDataSource.insertWatchlist(TVTable.fromEntity(tv));
+      final result = await localTVDataSource
+          .insertWatchlist(WatchListTable.fromTVEntity(tv));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));

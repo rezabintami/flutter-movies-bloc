@@ -1,5 +1,7 @@
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movies/domain/entities/movie_detail.dart';
+import 'package:tv/domain/entities/tv_detail.dart';
 
 class WatchListTable extends Equatable {
   final int id;
@@ -24,13 +26,21 @@ class WatchListTable extends Equatable {
         overview: map['overview'],
       );
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'is_movie': 1,
-        'title': title,
-        'posterPath': posterPath,
-        'overview': overview,
-      };
+  factory WatchListTable.fromMovieEntity(MovieDetail movie) => WatchListTable(
+        id: movie.id,
+        isMovie: 1,
+        title: movie.title,
+        posterPath: movie.posterPath,
+        overview: movie.overview,
+      );
+
+  factory WatchListTable.fromTVEntity(TVDetail tv) => WatchListTable(
+        id: tv.id,
+        isMovie: 0,
+        title: tv.name,
+        posterPath: tv.posterPath,
+        overview: tv.overview,
+      );
 
   Watchlist toEntity() => Watchlist.watchlist(
         id: id,
@@ -39,6 +49,14 @@ class WatchListTable extends Equatable {
         posterPath: posterPath,
         title: title,
       );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'is_movie': isMovie,
+        'title': title,
+        'posterPath': posterPath,
+        'overview': overview,
+      };
 
   @override
   List<Object?> get props => [id, title, posterPath, overview];
