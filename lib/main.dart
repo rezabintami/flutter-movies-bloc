@@ -15,8 +15,8 @@ import 'package:movies/movies.dart' as movies;
 import 'package:tv/tv.dart';
 
 void main() async {
-  // await Firebase.initializeApp();
-  // await HttpSSLPinning.init();
+  await Firebase.initializeApp();
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
