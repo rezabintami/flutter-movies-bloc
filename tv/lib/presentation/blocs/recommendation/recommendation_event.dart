@@ -6,3 +6,11 @@ abstract class RecommendationEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class RecommendationFetch extends RecommendationEvent {
+  final int id;
+  RecommendationFetch(this.id);
+
+  @override
+  List<Object> get props => [id];
+}

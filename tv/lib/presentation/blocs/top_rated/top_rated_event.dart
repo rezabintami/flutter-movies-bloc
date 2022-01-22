@@ -6,3 +6,10 @@ abstract class TopRatedEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class TopRatedFetch extends TopRatedEvent {
+  TopRatedFetch();
+
+  @override
+  List<Object> get props => [];
+}
