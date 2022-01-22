@@ -1,17 +1,14 @@
 import 'package:core/core.dart';
+import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_tv_notifier.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +19,9 @@ import 'package:tv/tv.dart' as tv;
 import 'package:movies/movies.dart' as movies;
 import 'package:tv/tv.dart';
 
-void main() {
+void main() async {
+  // await Firebase.initializeApp();
+  // await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
@@ -32,21 +31,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
-        ),
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
@@ -75,6 +59,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<movies.SearchBloc>(),
         ),
+        BlocProvider(create: (_) => di.locator<movies.DetailBloc>()),
+        BlocProvider(create: (_) => di.locator<movies.NowPlayingBloc>()),
+        BlocProvider(create: (_) => di.locator<movies.PopularBloc>()),
+        BlocProvider(create: (_) => di.locator<movies.TopRatedBloc>()),
+
+        //! BLOC WATCHLIST
+        BlocProvider(create: (_) => di.locator<WatchlistBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -1,12 +1,11 @@
+import 'package:ditonton/data/datasources/watchlist_data_source.dart';
+import 'package:ditonton/data/repositories/watchlist_repository_impl.dart';
+import 'package:ditonton/domain/repositories/watchlist_repositories.dart';
 import 'package:ditonton/domain/usecases/get_watchlist.dart';
 import 'package:ditonton/domain/usecases/remove_movie_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_movie_watchlist.dart';
-import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
+import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/provider/popular_tv_notifier.dart';
-import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_tv_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
@@ -27,43 +26,22 @@ final locator = GetIt.instance;
 void init() {
   // provider
   locator.registerFactory(
-    () => MovieListNotifier(
-      getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieDetailNotifier(
-      getMovieDetail: locator(),
-      getMovieRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularMoviesNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedMoviesNotifier(
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
     () => WatchlistMovieNotifier(
       getWatchlistMovies: locator(),
     ),
   );
 
-  // tv provider
+  locator.registerFactory(
+    () => PopularTVNotifier(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedTVNotifier(
+      getTopRatedTV: locator(),
+    ),
+  );
+
   locator.registerFactory(
     () => TVListNotifier(
       getNowPlayingTV: locator(),
@@ -80,18 +58,24 @@ void init() {
       removeWatchlist: locator(),
     ),
   );
+
+  // tv blocs
   locator.registerFactory(() => tv.SearchBloc(locator()));
 
-  locator.registerFactory(
-    () => PopularTVNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTVNotifier(
-      getTopRatedTV: locator(),
-    ),
-  );
+  // movie blocs
+  locator.registerFactory(() => movies.SearchBloc(locator()));
+  locator.registerFactory(() => movies.DetailBloc(
+      getMovieDetail: locator(),
+      getMovieRecommendations: locator(),
+      getMovieWatchListStatus: locator(),
+      saveMovieWatchlist: locator(),
+      removeMovieWatchlist: locator()));
+  locator.registerFactory(() => movies.NowPlayingBloc(locator()));
+  locator.registerFactory(() => movies.TopRatedBloc(locator()));
+  locator.registerFactory(() => movies.PopularBloc(locator()));
+
+  // watchlist blocs
+  locator.registerFactory(() => WatchlistBloc(locator()));
 
   // use case
   locator.registerLazySingleton(() => movies.GetNowPlayingMovies(locator()));
@@ -131,6 +115,13 @@ void init() {
     ),
   );
 
+  locator.registerLazySingleton<WatchlistRepository>(
+    () => WatchlistRepositoryImpl(
+        localMovieDataSource: locator(),
+        localTVDataSource: locator(),
+        localWatchlistDataSource: locator()),
+  );
+
   // data sources
   locator.registerLazySingleton<movies.MovieRemoteDataSource>(
       () => movies.MovieRemoteDataSourceImpl(client: locator()));
@@ -141,6 +132,9 @@ void init() {
       () => tv.TVRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<tv.TVLocalDataSource>(
       () => tv.TVLocalDataSourceImpl(databaseHelper: locator()));
+
+  locator.registerLazySingleton<WatchlistLocalDataSource>(
+      () => WatchlistLocalDataSourceImpl(databaseHelper: locator()));
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());

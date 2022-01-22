@@ -4,7 +4,6 @@ import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:tv/data/datasources/tv_local_data_source.dart';
 import 'package:tv/data/datasources/tv_remote_data_source.dart';
-import 'package:tv/data/models/tv_table.dart';
 import 'package:tv/domain/entities/tv.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/domain/repositories/tv_repository.dart';
@@ -88,35 +87,5 @@ class TVRepositoryImpl implements TVRepository {
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
     }
-  }
-
-  @override
-  Future<Either<Failure, String>> saveWatchlist(TVDetail tv) async {
-    try {
-      final result =
-          await localDataSource.insertWatchlist(TVTable.fromEntity(tv));
-      return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  @override
-  Future<Either<Failure, String>> removeWatchlist(TVDetail tv) async {
-    try {
-      final result =
-          await localDataSource.removeWatchlist(TVTable.fromEntity(tv));
-      return Right(result);
-    } on DatabaseException catch (e) {
-      return Left(DatabaseFailure(e.message));
-    }
-  }
-
-  @override
-  Future<bool> isAddedToWatchlist(int id) async {
-    final result = await localDataSource.getTVById(id);
-    return result != null;
   }
 }

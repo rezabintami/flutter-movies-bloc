@@ -6,3 +6,10 @@ abstract class PopularEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class PopularFetch extends PopularEvent {
+  PopularFetch();
+
+  @override
+  List<Object> get props => [];
+}

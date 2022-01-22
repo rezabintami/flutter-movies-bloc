@@ -1,7 +1,6 @@
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/usecases/tv/search_tv.dart';
 import 'package:flutter/foundation.dart';
 import 'package:core/core.dart';
+import 'package:tv/tv.dart';
 
 class TVSearchNotifier extends ChangeNotifier {
   final SearchTV searchTV;

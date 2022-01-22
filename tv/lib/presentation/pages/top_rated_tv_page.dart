@@ -1,3 +1,4 @@
+import 'package:ditonton/presentation/provider/top_rated_tv_notifier.dart';
 import 'package:tv/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

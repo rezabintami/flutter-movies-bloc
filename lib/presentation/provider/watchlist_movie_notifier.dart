@@ -1,5 +1,5 @@
 import 'package:ditonton/domain/entities/watchlist.dart';
-import 'package:ditonton/domain/usecases/movie/get_watchlist_movies.dart';
+import 'package:ditonton/domain/usecases/get_watchlist.dart';
 import 'package:flutter/foundation.dart';
 import 'package:core/core.dart';
 
@@ -15,7 +15,7 @@ class WatchlistMovieNotifier extends ChangeNotifier {
 
   WatchlistMovieNotifier({required this.getWatchlistMovies});
 
-  final GetWatchlistMovies getWatchlistMovies;
+  final GetWatchlist getWatchlistMovies;
 
   Future<void> fetchWatchlistMovies() async {
     _watchlistState = RequestState.Loading;
