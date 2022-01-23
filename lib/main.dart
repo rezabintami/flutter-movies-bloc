@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,10 +26,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TVDetailNotifier>(),
-        ),
-
         //! BLOC TV
         BlocProvider(create: (_) => di.locator<tv.SearchBloc>()),
         BlocProvider(create: (_) => di.locator<tv.DetailBloc>()),
