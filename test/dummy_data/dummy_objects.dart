@@ -103,8 +103,25 @@ final testWatchListTable = WatchListTable(
   overview: 'overview',
 );
 
+final testWatchListTVTable = WatchListTable(
+  id: 1,
+  isMovie: 0,
+  title: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
 final testMovieMap = {
   'id': 1,
+  'isMovie': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'title': 'title',
+};
+
+final testTVMap = {
+  'id': 1,
+  'isMovie': 0,
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',

@@ -28,5 +28,3 @@ class SearchHasData extends SearchState {
   @override
   List<Object> get props => [result];
 }
-
-class SearchInitial extends SearchState {}
