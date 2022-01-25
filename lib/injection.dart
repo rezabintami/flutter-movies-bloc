@@ -1,3 +1,4 @@
+import 'package:core/utils/ssl_pinning.dart';
 import 'package:ditonton/data/datasources/watchlist_data_source.dart';
 import 'package:ditonton/data/repositories/watchlist_repository_impl.dart';
 import 'package:ditonton/domain/repositories/watchlist_repositories.dart';
@@ -108,5 +109,6 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  // locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

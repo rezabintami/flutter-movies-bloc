@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:tv/data/models/tv_table.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
