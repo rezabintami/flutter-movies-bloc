@@ -17,11 +17,11 @@ class Watchlist extends Equatable {
     required this.title,
   });
 
-  int id;
-  int? isMovie;
-  String? overview;
-  String? posterPath;
-  String? title;
+  final int id;
+  final int? isMovie;
+  final String? overview;
+  final String? posterPath;
+  final String? title;
 
   @override
   List<Object?> get props => [
