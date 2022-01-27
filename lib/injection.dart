@@ -6,7 +6,6 @@ import 'package:ditonton/domain/usecases/get_watchlist.dart';
 import 'package:ditonton/domain/usecases/remove_movie_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_movie_watchlist.dart';
 import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:movies/movies.dart' as movies;
 import 'package:tv/tv.dart' as tv;
@@ -109,6 +108,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  // locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton(() => HttpSSLPinning.client);
 }
