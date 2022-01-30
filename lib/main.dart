@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:ditonton/presentation/blocs/watchlist/watchlist_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
+import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
             case TOP_RATED_TV_PAGE:
               return CupertinoPageRoute(builder: (_) => TopRatedTVPage());
             case WATCHLIST_PAGE:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
+              return MaterialPageRoute(builder: (_) => WatchlistPage());
             case ABOUT_PAGE:
               return MaterialPageRoute(builder: (_) => AboutPage());
             default:

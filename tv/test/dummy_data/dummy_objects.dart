@@ -1,9 +1,9 @@
 import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:movies/data/models/movie_table.dart';
-import 'package:movies/domain/entities/entities.dart' as movie;
+import 'package:movies/movies.dart' as movie;
 import 'package:tv/data/models/tv_table.dart';
-import 'package:tv/domain/entities/entities.dart' as tv;
+import 'package:tv/tv.dart' as tv;
 
 final testMovie = movie.Movie(
   adult: false,
@@ -22,6 +22,20 @@ final testMovie = movie.Movie(
   voteCount: 13507,
 );
 
+final testTV = tv.TV(
+    backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
+    genreIds: [14, 28],
+    id: 557,
+    name: 'Spider-Man',
+    originalName: 'Spider-Man',
+    overview:
+        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+    popularity: 60.441,
+    voteAverage: 7.2,
+    voteCount: 13507,
+    firstAirDate: '',
+    posterPath: 'posterPath');
+
 final testWatch = Watchlist(
   id: 557,
   isMovie: 1,
@@ -32,6 +46,8 @@ final testWatch = Watchlist(
 );
 
 final testMovieList = [testMovie];
+final testTVList = [testTV];
+
 final testWatchlistList = [testWatch];
 
 final testMovieDetail = movie.MovieDetail(
