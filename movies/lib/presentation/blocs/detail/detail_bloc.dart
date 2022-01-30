@@ -4,8 +4,11 @@ import 'package:ditonton/domain/usecases/get_movie_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/remove_movie_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_movie_watchlist.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movies/domain/entities/entities.dart';
-import 'package:movies/domain/usecases/usecases.dart';
+import 'package:movies/domain/entities/genre.dart';
+import 'package:movies/domain/entities/movie.dart';
+import 'package:movies/domain/entities/movie_detail.dart';
+import 'package:movies/domain/usecases/get_movie_detail.dart';
+import 'package:movies/domain/usecases/get_movie_recommendations.dart';
 
 part 'detail_event.dart';
 part 'detail_state.dart';

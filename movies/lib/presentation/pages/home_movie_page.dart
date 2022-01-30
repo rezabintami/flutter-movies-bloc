@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/domain/entities/movie.dart';
-import 'package:movies/presentation/blocs/blocs.dart';
+import 'package:movies/presentation/blocs/now_playing/now_playing_bloc.dart';
+import 'package:movies/presentation/blocs/popular/popular_bloc.dart';
+import 'package:movies/presentation/blocs/top_rated/top_rated_bloc.dart';
 
 class HomeMoviePage extends StatefulWidget {
   @override
@@ -58,8 +60,13 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   );
                 } else if (state is NowPlayingLoaded) {
                   return MovieList(state.movies);
+                } else if (state is NowPlayingError) {
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state.message),
+                  );
                 } else {
-                  return Text('Failed');
+                  return Container();
                 }
               }),
               _buildSubHeading(
@@ -73,8 +80,13 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   );
                 } else if (state is PopularLoaded) {
                   return MovieList(state.movies);
+                } else if (state is PopularError) {
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state.message),
+                  );
                 } else {
-                  return Text('Failed');
+                  return Container();
                 }
               }),
               _buildSubHeading(
@@ -89,8 +101,13 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   );
                 } else if (state is TopRatedLoaded) {
                   return MovieList(state.movies);
+                } else if (state is TopRatedError) {
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state.message),
+                  );
                 } else {
-                  return Text('Failed');
+                  return Container();
                 }
               }),
             ],

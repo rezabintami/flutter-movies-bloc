@@ -5,7 +5,11 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:tv/domain/entities/entities.dart';
+import 'package:tv/domain/entities/episode.dart';
+import 'package:tv/domain/entities/genre.dart';
+import 'package:tv/domain/entities/season.dart';
+import 'package:tv/domain/entities/tv.dart';
+import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/presentation/blocs/detail/detail_bloc.dart';
 
 class TVDetailPage extends StatefulWidget {

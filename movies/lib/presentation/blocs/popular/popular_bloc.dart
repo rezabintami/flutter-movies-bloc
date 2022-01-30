@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movies/domain/entities/entities.dart';
-import 'package:movies/domain/usecases/usecases.dart';
+import 'package:movies/domain/entities/movie.dart';
+import 'package:movies/domain/usecases/get_popular_movies.dart';
 
 part 'popular_event.dart';
 part 'popular_state.dart';

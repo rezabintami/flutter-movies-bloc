@@ -1,8 +1,8 @@
 import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tv/domain/entities/entities.dart' as tv;
-import 'package:movies/domain/entities/entities.dart' as movie;
+import 'package:tv/tv.dart' as tv;
+import 'package:movies/movies.dart' as movie;
 
 import '../../../dummy_data/dummy_objects.dart';
 

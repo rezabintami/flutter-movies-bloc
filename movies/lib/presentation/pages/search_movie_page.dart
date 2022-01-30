@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/presentation/blocs/blocs.dart';
+import 'package:movies/presentation/blocs/search/search_bloc.dart';
 import 'package:movies/presentation/widgets/movie_card_list.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,11 @@ class SearchMoviePage extends StatelessWidget {
                   ),
                 );
               } else if (state is SearchError) {
-                return Expanded(child: Text(state.message));
+                return Expanded(
+                    key: Key('error_message'), child: Text(state.message));
+              } else if (state is SearchEmpty) {
+                return Expanded(
+                    key: Key('error_message'), child: Text('No result'));
               } else {
                 return Expanded(child: Container());
               }

@@ -1,9 +1,9 @@
 import 'package:ditonton/data/models/watchlist_table.dart';
 import 'package:ditonton/domain/entities/watchlist.dart';
 import 'package:movies/data/models/movie_table.dart';
-import 'package:movies/domain/entities/entities.dart' as movie;
+import 'package:movies/movies.dart' as movie;
 import 'package:tv/data/models/tv_table.dart';
-import 'package:tv/domain/entities/entities.dart' as tv;
+import 'package:tv/tv.dart' as tv;
 
 final testMovie = movie.Movie(
   adult: false,

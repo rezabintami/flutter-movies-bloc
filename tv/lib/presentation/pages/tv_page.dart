@@ -4,8 +4,10 @@ import 'package:core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv/domain/entities/entities.dart';
-import 'package:tv/presentation/blocs/blocs.dart';
+import 'package:tv/domain/entities/tv.dart';
+import 'package:tv/presentation/blocs/now_playing/now_playing_bloc.dart';
+import 'package:tv/presentation/blocs/popular/popular_bloc.dart';
+import 'package:tv/presentation/blocs/top_rated/top_rated_bloc.dart';
 
 class TVPage extends StatefulWidget {
   @override
@@ -58,8 +60,13 @@ class _TVPageState extends State<TVPage> {
                   );
                 } else if (state is NowPlayingLoaded) {
                   return TVList(state.tv);
+                } else if (state is NowPlayingError) {
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state.message),
+                  );
                 } else {
-                  return Text('Failed');
+                  return Container();
                 }
               }),
               _buildSubHeading(
@@ -73,8 +80,13 @@ class _TVPageState extends State<TVPage> {
                   );
                 } else if (state is PopularLoaded) {
                   return TVList(state.tv);
+                } else if (state is PopularError) {
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state.message),
+                  );
                 } else {
-                  return Text('Failed');
+                  return Container();
                 }
               }),
               _buildSubHeading(
@@ -89,8 +101,13 @@ class _TVPageState extends State<TVPage> {
                   );
                 } else if (state is TopRatedLoaded) {
                   return TVList(state.tv);
+                } else if (state is TopRatedError) {
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state.message),
+                  );
                 } else {
-                  return Text('Failed');
+                  return Container();
                 }
               }),
             ],

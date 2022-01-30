@@ -9,7 +9,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movies/domain/entities/genre.dart';
 import 'package:movies/domain/entities/movie.dart';
 import 'package:movies/domain/entities/movie_detail.dart';
-import 'package:movies/presentation/blocs/blocs.dart';
+import 'package:movies/presentation/blocs/detail/detail_bloc.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final int id;
